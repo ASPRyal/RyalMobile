@@ -1,0 +1,43 @@
+{
+  "@@locale": "ar",
+  "appTitle": "تطبيق فلاتر التجريبي",
+  "homePageTitle": "الصفحة الرئيسية لتطبيق فلاتر التجريبي",
+  "counterText": "لقد ضغطت على الزر هذا العدد من المرات:",
+  "incrementTooltip": "زيادة",
+  "updateMessage": "يرجى تحديث التطبيق إلى أحدث إصدار للاستمتاع بالميزات والتحسينات الجديدة.",
+  "welcome_back": "أهلاً وسهلاً",
+    "signup": "Sign Up",
+  "login": "Log In",
+
+  "welcome": "Welcome",
+  "please_enter_your_phone_number":" Please enter your phone number",
+  "please_enter_the_required_information_to_sign_up":"Please enter the required information to sign up.",
+  "fullname":"Fullname",
+  "qid_number":"QID Number",
+  "phone_number":"Phone Number", 
+  "email":"Email",
+  "password":"Password",
+  "confirm_password":"Confirm Password",
+  "i_have_read_and_agreed_to_the":"I have read and agreed to the",
+  "terms_and_conditions":"Terms and Conditions",
+  "short_and": "&",
+  "privacy_policy":"Privacy Policy",
+  "continue_text":"Continue",
+  "change_language":"Change Language",
+  "english":"English",
+  "arabic":"Arabic",
+  "login_with_mpin" : "Login with mPin",
+"new_here_create_an_account":"New here? Create an account.",
+"go_back":"Go Back",
+"confirm":"Confirm",
+"one_time_password":"One Time Password",
+"we_sent_one_time_code_to":"We've sent a One Time Passcode to your mobile number",
+"resend":"Resend",
+"close":"Close",
+"individual": "فردي",
+"corporate": "شركة",
+"mcit_number":"MCIT Number"
+
+
+
+}
