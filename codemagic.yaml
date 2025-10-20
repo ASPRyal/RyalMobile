@@ -7,18 +7,40 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
+      groups:
+        - firebase_credentials
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: '*'
+          include: true
     scripts:
       - name: Get Flutter packages
         script: |
           flutter packages pub get
-      - name: Build unsigned IPA
+      - name: Install pods
         script: |
-          flutter build ios --release --no-codesign
-          mkdir -p build/ios/ipa
-          cd build/ios/iphoneos
-          mkdir Payload
-          mv Runner.app Payload/
-          zip -r ../ipa/app.ipa Payload
+          find . -name "Podfile" -execdir pod install \;
+      - name: Build IPA for Firebase
+        script: |
+          flutter build ipa --release --export-options-plist=$HOME/export_options.plist || flutter build ios --release
+      - name: Create IPA manually if needed
+        script: |
+          if [ ! -f build/ios/ipa/*.ipa ]; then
+            cd build/ios/iphoneos
+            mkdir -p Payload
+            cp -r Runner.app Payload/
+            zip -r ../../../app.ipa Payload
+            mkdir -p ../ipa
+            mv ../../../app.ipa ../ipa/
+          fi
     artifacts:
       - build/ios/ipa/*.ipa
-      - build/ios/iphoneos/*.app
+    publishing:
+      firebase:
+        firebase_token: $FIREBASE_TOKEN
+        ios:
+          app_id: $FIREBASE_IOS_APP_ID
+          groups:
+            - testers
