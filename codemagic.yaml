@@ -2,16 +2,23 @@ workflows:
   ios-workflow:
     name: iOS Workflow
     max_build_duration: 120
+    instance_type: mac_mini_m2
     environment:
       flutter: stable
       xcode: latest
+      cocoapods: default
     scripts:
       - name: Get Flutter packages
         script: |
           flutter packages pub get
-      - name: Build IPA
+      - name: Build unsigned IPA
         script: |
-          flutter build ipa --release --export-options-plist=/Users/builder/export_options.plist
+          flutter build ios --release --no-codesign
+          mkdir -p build/ios/ipa
+          cd build/ios/iphoneos
+          mkdir Payload
+          mv Runner.app Payload/
+          zip -r ../ipa/app.ipa Payload
     artifacts:
       - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
+      - build/ios/iphoneos/*.app
